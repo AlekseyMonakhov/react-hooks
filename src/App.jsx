@@ -1,7 +1,6 @@
 import "./App.css";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Child from "./components/Child";
-import { useCallback } from "react";
 
 function App() {
   const [toggler, setToggler] = useState(false);

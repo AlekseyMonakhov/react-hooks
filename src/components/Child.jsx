@@ -5,7 +5,7 @@ const Child = ({ returnComment }) => {
   useEffect(() => {
     console.log("func was called");
   }, [returnComment]);
-  return <div>{returnComment("AAlekse")}</div>;
+  return <div>{returnComment("Aleksey")}</div>;
 };
 
 export default Child;
