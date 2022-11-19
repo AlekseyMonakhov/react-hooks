@@ -1,25 +1,35 @@
 import "./App.css";
-import { useCallback, useState } from "react";
-import Child from "./components/Child";
+import {useEffect, useLayoutEffect, useRef, useState} from "react";
 
 function App() {
-  const [toggler, setToggler] = useState(false);
-  const [data, setData] = useState("Hello");
+    const [text, setText] = useState("1");
+    const inputRef = useRef(null);
+    useEffect(() => {
+        inputRef.current.value = "hello";
+        console.log(inputRef.current.value)
+    }, []);
 
-  const returnComment = useCallback(
-    (name) => {
-      return data + name;
-    },
-    [data]
-  );
+    useLayoutEffect(() => {
+        console.log(inputRef.current.value);
+    }, []);
 
-  return (
-    <div>
-      <Child returnComment={returnComment} />
-      <button onClick={() => setToggler(!toggler)}>Toggle</button>
-      {toggler && <h1>Toggle</h1>}
-    </div>
-  );
+    const handleChange = (e) => {
+        setText(e.target.value)
+    }
+
+    const handleFocus = () => {
+        setText("")
+    }
+    return (
+        <div>
+            <input
+                ref={inputRef}
+                value={text}
+                onChange={handleChange}
+                onFocus={handleFocus}
+            ></input>
+        </div>
+    );
 }
 
 export default App;
